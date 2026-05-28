@@ -26,7 +26,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Public: list categories
-router.get('/categories', async (_req: Request, res: Response) => {
+router.get('/categories', async (_req, res) => {
   try {
     const categories = await CategoryModel.find().lean();
     res.json(categories.map((c: any) => ({ id: c._id?.toString(), name: c.name, key: c.key })));
@@ -37,7 +37,7 @@ router.get('/categories', async (_req: Request, res: Response) => {
 });
 
 // Admin: create/upsert category by name
-router.post('/admin/categories', authenticateToken, authenticateAdmin, async (req: Request, res: Response) => {
+router.post('/admin/categories', authenticateToken, authenticateAdmin, async (req, res) => {
   try {
     const { name } = req.body as { name?: string };
     if (!name || !name.trim()) return res.status(400).json({ error: 'name is required' });
@@ -52,7 +52,7 @@ router.post('/admin/categories', authenticateToken, authenticateAdmin, async (re
 });
 
 // Admin: update (rename) category
-router.put('/admin/categories/:id', authenticateToken, authenticateAdmin, async (req: Request, res: Response) => {
+router.put('/admin/categories/:id', authenticateToken, authenticateAdmin, async (req, res) => {
   try {
     const id = req.params.id;
     const { name } = req.body as { name?: string };
@@ -69,7 +69,7 @@ router.put('/admin/categories/:id', authenticateToken, authenticateAdmin, async 
 });
 
 // Admin: upload category image
-router.post('/admin/categories/:id/image', authenticateToken, authenticateAdmin, upload.single('image'), async (req: Request, res: Response) => {
+router.post('/admin/categories/:id/image', authenticateToken, authenticateAdmin, upload.single('image'), async (req, res) => {
   try {
     const id = req.params.id;
     const file = req.file;
@@ -85,7 +85,7 @@ router.post('/admin/categories/:id/image', authenticateToken, authenticateAdmin,
 });
 
 // Admin: delete category image
-router.delete('/admin/categories/:id/image', authenticateToken, authenticateAdmin, async (req: Request, res: Response) => {
+router.delete('/admin/categories/:id/image', authenticateToken, authenticateAdmin, async (req, res) => {
   try {
     const id = req.params.id;
     const cat = (await CategoryModel.findById(id).lean().exec()) as any;
@@ -107,7 +107,7 @@ router.delete('/admin/categories/:id/image', authenticateToken, authenticateAdmi
 });
 
 // Admin: reorder categories
-router.post('/admin/categories/reorder', authenticateToken, authenticateAdmin, async (req: Request, res: Response) => {
+router.post('/admin/categories/reorder', authenticateToken, authenticateAdmin, async (req, res) => {
   try {
     const { ids } = req.body as { ids?: string[] };
     if (!Array.isArray(ids)) return res.status(400).json({ error: 'ids array required' });
@@ -122,7 +122,7 @@ router.post('/admin/categories/reorder', authenticateToken, authenticateAdmin, a
 });
 
 // Admin: delete category (only if no products reference it)
-router.delete('/admin/categories/:id', authenticateToken, authenticateAdmin, async (req: Request, res: Response) => {
+router.delete('/admin/categories/:id', authenticateToken, authenticateAdmin, async (req, res) => {
   try {
     const id = req.params.id;
   const category = (await CategoryModel.findById(id).lean().exec()) as any;

@@ -574,7 +574,7 @@ router.get("/analytics/products", farmerAuth, async (req: any, res: Response) =>
 });
 
 // Get categories
-router.get("/categories", farmerAuth, async (req: Request, res: Response) => {
+router.get("/categories", farmerAuth, async (req, res) => {
   try {
     const categories = await CategoryModel.find().lean();
     res.json(categories.map((c: any) => ({ ...c, id: c._id?.toString() ?? c.id })));

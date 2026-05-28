@@ -34,7 +34,7 @@ const upload = multer({ storage });
 const adminAuth = [authenticateToken, authenticateAdmin];
 
 // Get all products (admin) - supports filtering by published status via ?published=all|published|unpublished
-router.get("/products", adminAuth, async (req: Request, res: Response) => {
+router.get("/products", adminAuth, async (req, res) => {
   try {
     const publishedFilter = (req.query.published as string) || "all";
     let query: any = {};
@@ -68,7 +68,7 @@ router.get("/products", adminAuth, async (req: Request, res: Response) => {
 });
 
 // Add new product
-router.post("/products", adminAuth, upload.single("image"), async (req: Request, res: Response) => {
+router.post("/products", adminAuth, upload.single("image"), async (req, res) => {
   try {
     const { name, price, category, inStock, description, published } = req.body;
     // If a category string is provided, ensure it exists in Category collection (normalize key)
@@ -173,7 +173,7 @@ router.put("/products/:id", adminAuth, upload.single("image"), async (req, res) 
 });
 
 // Approve or change status of a product
-router.put("/products/:id/approve", adminAuth, async (req: Request, res: Response) => {
+router.put("/products/:id/approve", adminAuth, async (req, res) => {
   try {
     const { status } = req.body as { status?: string };
     if (!status) {
@@ -211,7 +211,7 @@ router.delete("/products/:id", adminAuth, async (req, res) => {
 });
 
 // Bulk update products (e.g., publish/unpublish)
-router.put("/products/bulk", adminAuth, async (req: Request, res: Response) => {
+router.put("/products/bulk", adminAuth, async (req, res) => {
   try {
     const { ids, published } = req.body as { ids?: string[]; published?: boolean };
     if (!Array.isArray(ids) || ids.length === 0) {
@@ -232,7 +232,7 @@ router.put("/products/bulk", adminAuth, async (req: Request, res: Response) => {
 });
 
 // User management
-router.get("/users", adminAuth, async (req: Request, res: Response) => {
+router.get("/users", adminAuth, async (req, res) => {
   try {
     const { page = "1", limit = "20", role, status, search } = req.query as any;
     const pageNum = Math.max(1, parseInt(page, 10) || 1);
@@ -260,7 +260,7 @@ router.get("/users", adminAuth, async (req: Request, res: Response) => {
   }
 });
 
-router.get("/users/:id", adminAuth, async (req: Request, res: Response) => {
+router.get("/users/:id", adminAuth, async (req, res) => {
   try {
     const user = await UserModel.findById(req.params.id).lean();
     if (!user) return res.status(404).json({ error: "User not found" });
@@ -271,7 +271,7 @@ router.get("/users/:id", adminAuth, async (req: Request, res: Response) => {
   }
 });
 
-router.post("/users", adminAuth, async (req: Request, res: Response) => {
+router.post("/users", adminAuth, async (req, res) => {
   try {
     const { name, email, phone, password, role = 'customer', status = 'active', farmName, farmLocation } = req.body;
     const existing = await UserModel.findOne({ $or: [{ email }, { phone }] }).exec();
@@ -298,7 +298,7 @@ router.post("/users", adminAuth, async (req: Request, res: Response) => {
   }
 });
 
-router.put("/users/:id", adminAuth, async (req: Request, res: Response) => {
+router.put("/users/:id", adminAuth, async (req, res) => {
   try {
     const { name, email, phone, password, role, status, farmName, farmLocation } = req.body;
     const update: any = {};
@@ -320,7 +320,7 @@ router.put("/users/:id", adminAuth, async (req: Request, res: Response) => {
   }
 });
 
-router.delete("/users/:id", adminAuth, async (req: Request, res: Response) => {
+router.delete("/users/:id", adminAuth, async (req, res) => {
   try {
     const user = await UserModel.findByIdAndDelete(req.params.id).exec();
     if (!user) return res.status(404).json({ error: "User not found" });
@@ -331,7 +331,7 @@ router.delete("/users/:id", adminAuth, async (req: Request, res: Response) => {
   }
 });
 
-router.put("/users/:id/status", adminAuth, async (req: Request, res: Response) => {
+router.put("/users/:id/status", adminAuth, async (req, res) => {
   try {
     const { status } = req.body as { status?: string };
     if (!status) return res.status(400).json({ error: "Status is required" });
@@ -345,7 +345,7 @@ router.put("/users/:id/status", adminAuth, async (req: Request, res: Response) =
 });
 
 // Inventory management
-router.get("/inventory", adminAuth, async (req: Request, res: Response) => {
+router.get("/inventory", adminAuth, async (req, res) => {
   try {
     const lowStockThreshold = parseInt((req.query.lowStock as string) || "10", 10);
     const products = (await ProductModel.find().lean()) as any[];
@@ -363,7 +363,7 @@ router.get("/inventory", adminAuth, async (req: Request, res: Response) => {
   }
 });
 
-router.get("/inventory/:productId", adminAuth, async (req: Request, res: Response) => {
+router.get("/inventory/:productId", adminAuth, async (req, res) => {
   try {
     const product = (await ProductModel.findById(req.params.productId).lean()) as any;
     if (!product) return res.status(404).json({ error: "Product not found" });
@@ -379,7 +379,7 @@ router.get("/inventory/:productId", adminAuth, async (req: Request, res: Respons
   }
 });
 
-router.put("/inventory/:productId", adminAuth, async (req: Request, res: Response) => {
+router.put("/inventory/:productId", adminAuth, async (req, res) => {
   try {
     const { quantity, inStock } = req.body as { quantity?: number; inStock?: boolean };
     const update: any = {};
@@ -395,7 +395,7 @@ router.put("/inventory/:productId", adminAuth, async (req: Request, res: Respons
 });
 
 // Reports
-router.get("/reports/sales", adminAuth, async (req: Request, res: Response) => {
+router.get("/reports/sales", adminAuth, async (req, res) => {
   try {
     const { startDate, endDate } = req.query as any;
     const match: any = {};
@@ -421,7 +421,7 @@ router.get("/reports/sales", adminAuth, async (req: Request, res: Response) => {
   }
 });
 
-router.get("/reports/orders", adminAuth, async (req: Request, res: Response) => {
+router.get("/reports/orders", adminAuth, async (req, res) => {
   try {
     const { startDate, endDate, status } = req.query as any;
     const filter: any = {};
@@ -437,7 +437,7 @@ router.get("/reports/orders", adminAuth, async (req: Request, res: Response) => 
   }
 });
 
-router.get("/reports/products", adminAuth, async (req: Request, res: Response) => {
+router.get("/reports/products", adminAuth, async (req, res) => {
   try {
     const { startDate, endDate } = req.query as any;
     const match: any = {};
@@ -466,7 +466,7 @@ router.get("/reports/products", adminAuth, async (req: Request, res: Response) =
   }
 });
 
-router.get("/reports/users", adminAuth, async (req: Request, res: Response) => {
+router.get("/reports/users", adminAuth, async (req, res) => {
   try {
     const { startDate, endDate } = req.query as any;
     const match: any = {};
@@ -492,7 +492,7 @@ router.get("/reports/users", adminAuth, async (req: Request, res: Response) => {
 });
 
 // Combined analytics
-router.get("/analytics", adminAuth, async (req: Request, res: Response) => {
+router.get("/analytics", adminAuth, async (req, res) => {
   try {
     const { type = "sales", year, month } = req.query as { type?: string; year?: string; month?: string };
     let match = {};
@@ -580,7 +580,7 @@ router.get("/analytics", adminAuth, async (req: Request, res: Response) => {
 });
 
 // Get all orders
-router.get("/orders", adminAuth, async (req: Request, res: Response) => {
+router.get("/orders", adminAuth, async (req, res) => {
   try {
   const orders = await OrderModel.find().populate("userId", "name email").lean();
     res.json(orders);
@@ -591,7 +591,7 @@ router.get("/orders", adminAuth, async (req: Request, res: Response) => {
 });
 
 // Update order status
-router.put("/orders/:id/status", adminAuth, async (req: Request, res: Response) => {
+router.put("/orders/:id/status", adminAuth, async (req, res) => {
   try {
     const { status } = req.body;
   const order = await OrderModel.findByIdAndUpdate(req.params.id, { status }, { new: true }).exec();
@@ -604,7 +604,7 @@ router.put("/orders/:id/status", adminAuth, async (req: Request, res: Response) 
 });
 
 // Get all promotions
-router.get("/promotions", adminAuth, async (req: Request, res: Response) => {
+router.get("/promotions", adminAuth, async (req, res) => {
   try {
   const promotions = await PromotionModel.find().lean();
   res.json(promotions.map((p: any) => ({ ...p, id: p._id?.toString() ?? p.id })));
@@ -615,7 +615,7 @@ router.get("/promotions", adminAuth, async (req: Request, res: Response) => {
 });
 
 // Add new promotion
-router.post("/promotions", adminAuth, async (req: Request, res: Response) => {
+router.post("/promotions", adminAuth, async (req, res) => {
   try {
     const promotion = new Promotion(req.body);
     await promotion.save();

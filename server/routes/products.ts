@@ -6,7 +6,7 @@ const ProductModel = Product as unknown as import('mongoose').Model<any>;
 const router = Router();
 
 // Get all products
-router.get("/products", async (_req: Request, res: Response) => {
+router.get("/products", async (_req, res) => {
   try {
     // If mongoose isn't connected (e.g. missing DATABASE_URL in dev), return empty list
     if (!Product.db || !Product.db.readyState) {
@@ -45,7 +45,7 @@ router.get("/products", async (_req: Request, res: Response) => {
 });
 
 // Get product by ID
-router.get("/products/:id", async (req: Request, res: Response) => {
+router.get("/products/:id", async (req, res) => {
   try {
   const product = await ProductModel.findById(req.params.id).lean();
     if (!product) return res.status(404).json({ error: "Product not found" });
