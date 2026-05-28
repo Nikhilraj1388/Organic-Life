@@ -1,0 +1,222 @@
+[
+  {
+    "name": "Organic Bananas",
+    "price": 50,
+    "category": "Fruits",
+    "image": "/Images/Mangoes.jpg",
+    "inStock": true,
+    "quantityOptions": [
+      { "label": "1kg", "value": 1 },
+      { "label": "2kg", "value": 2 },
+      { "label": "5kg", "value": 5 }
+    ],
+    "description": "Fresh organic bananas, rich in potassium and perfect for a healthy snack."
+  },
+  {
+    "name": "Organic Apples",
+    "price": 80,
+    "category": "Fruits",
+    "image": "/Images/Fresh Apples.jpg",
+    "inStock": true,
+    "quantityOptions": [
+      { "label": "1kg", "value": 1 },
+      { "label": "2kg", "value": 2 }
+    ],
+    "description": "Crisp and juicy organic apples, great for eating fresh or baking."
+  },
+  {
+    "name": "Organic Spinach",
+    "price": 40,
+    "category": "Vegetables",
+    "image": "/Images/Organic Spinach.jpg",
+    "inStock": true,
+    "quantityOptions": [
+      { "label": "500g", "value": 0.5 },
+      { "label": "1kg", "value": 1 }
+    ],
+    "description": "Nutrient-rich organic spinach, perfect for salads and cooking."
+  },
+  {
+    "name": "Organic Tomatoes",
+    "price": 60,
+    "category": "Vegetables",
+    "image": "/Images/Organic Tomatoes.jpg",
+    "inStock": true,
+    "quantityOptions": [
+      { "label": "1kg", "value": 1 },
+      { "label": "2kg", "value": 2 }
+    ],
+    "description": "Vine-ripened organic tomatoes, ideal for sauces and salads."
+  },
+  {
+    "name": "Organic Honey",
+    "price": 200,
+    "category": "Pantry",
+    "image": "/placeholder.svg",
+    "inStock": true,
+    "quantityOptions": [
+      { "label": "250g", "value": 0.25 },
+      { "label": "500g", "value": 0.5 }
+    ],
+    "description": "Pure organic honey from local beekeepers, naturally sweet and healthy."
+  },
+  {
+    "name": "Organic Quinoa",
+    "price": 150,
+    "category": "Grains",
+    "image": "/placeholder.svg",
+    "inStock": true,
+    "quantityOptions": [
+      { "label": "500g", "value": 0.5 },
+      { "label": "1kg", "value": 1 }
+    ],
+    "description": "Protein-packed organic quinoa, a versatile superfood for healthy meals."
+  },
+  {
+    "name": "Organic Broccoli",
+    "price": 70,
+    "category": "Vegetables",
+    "image": "/Images/broccoli.jpg",
+    "inStock": true,
+    "quantityOptions": [
+      { "label": "500g", "value": 0.5 },
+      { "label": "1kg", "value": 1 }
+    ],
+    "description": "Fresh organic broccoli, packed with vitamins and minerals."
+  },
+  {
+    "name": "Organic Carrots",
+    "price": 40,
+    "category": "Vegetables",
+    "image": "/Images/Organic Carrots.jpg",
+    "inStock": true,
+    "quantityOptions": [
+      { "label": "500g", "value": 0.5 },
+      { "label": "1kg", "value": 1 }
+    ],
+    "description": "Sweet and crunchy organic carrots, perfect for snacking or cooking."
+  },
+  {
+    "name": "Organic Cauliflower",
+    "price": 60,
+    "category": "Vegetables",
+    "image": "/Images/Cauliflower.jpg",
+    "inStock": true,
+    "quantityOptions": [
+      { "label": "1 head", "value": 1 }
+    ],
+    "description": "Versatile organic cauliflower, great for roasting, mashing, or making cauliflower rice."
+  },
+  {
+    "name": "Organic Cucumber",
+    "price": 30,
+    "category": "Vegetables",
+    "image": "/Images/Cucumber.jpg",
+    "inStock": true,
+    "quantityOptions": [
+      { "label": "1", "value": 1 }
+    ],
+    "description": "Cool and refreshing organic cucumber, perfect for salads and sandwiches."
+  },
+  {
+    "name": "Organic Strawberries",
+    "price": 120,
+    "category": "Fruits",
+    "image": "/Images/Strawberries.jpg",
+    "inStock": true,
+    "quantityOptions": [
+      { "label": "250g", "value": 0.25 },
+      { "label": "500g", "value": 0.5 }
+    ],
+    "description": "Sweet and juicy organic strawberries, bursting with flavor."
+  },
+  {
+    "name": "Organic Oranges",
+    "price": 90,
+    "category": "Fruits",
+    "image": "/Images/Oranges.jpg",
+    "inStock": true,
+    "quantityOptions": [
+      { "label": "1kg", "value": 1 }
+    ],
+    "description": "Juicy and vitamin C-rich organic oranges, a healthy and refreshing snack."
+  },
+  {
+    "name": "Organic Pineapple",
+    "price": 150,
+    "category": "Fruits",
+    "image": "/Images/Pineapple.jpg",
+    "inStock": true,
+    "quantityOptions": [
+      { "label": "1", "value": 1 }
+    ],
+    "description": "Tropical and sweet organic pineapple, perfect for a taste of the exotic."
+  },
+  {
+    "name": "Organic Eggs",
+    "price": 100,
+    "category": "Dairy & Eggs",
+    "image": "/Images/Organic Eggs.jpg",
+    "inStock": true,
+    "quantityOptions": [
+      { "label": "6 pack", "value": 6 },
+      { "label": "12 pack", "value": 12 }
+    ],
+    "description": "Farm-fresh organic eggs from free-range chickens."
+  },
+  {
+    "name": "Whole Milk",
+    "price": 60,
+    "category": "Dairy & Eggs",
+    "image": "/Images/Whole Milk.jpg",
+    "inStock": true,
+    "quantityOptions": [
+      { "label": "1L", "value": 1 }
+    ],
+    "description": "Fresh and creamy whole milk, rich in calcium and vitamins."
+  },
+  {
+    "name": "Greek Yogurt",
+    "price": 80,
+    "category": "Dairy & Eggs",
+    "image": "/Images/Greek Yogurt.jpg",
+    "inStock": true,
+    "quantityOptions": [
+      { "label": "500g", "value": 0.5 }
+    ],
+    "description": "Thick and creamy Greek yogurt, a great source of protein."
+  },
+  {
+    "name": "Paneer",
+    "price": 120,
+    "category": "Dairy & Eggs",
+    "image": "/Images/Paneer.jpg",
+    "inStock": true,
+    "quantityOptions": [
+      { "label": "200g", "value": 0.2 }
+    ],
+    "description": "Fresh and soft paneer, perfect for Indian dishes."
+  },
+  {
+    "name": "Organic Butter",
+    "price": 150,
+    "category": "Dairy & Eggs",
+    "image": "/Images/butter.jpg",
+    "inStock": true,
+    "quantityOptions": [
+      { "label": "200g", "value": 0.2 }
+    ],
+    "description": "Creamy and delicious organic butter, made from the finest milk."
+  },
+  {
+    "name": "Organic Cheese",
+    "price": 180,
+    "category": "Dairy & Eggs",
+    "image": "/Images/Cheese.jpg",
+    "inStock": true,
+    "quantityOptions": [
+      { "label": "200g", "value": 0.2 }
+    ],
+    "description": "Aged to perfection, this organic cheese has a sharp and nutty flavor."
+  }
+]
